@@ -213,8 +213,7 @@ def update_ibom_metadata(config: dict[str, Any], ibom_json: dict[str, Any], pnp_
         # Let InteractiveHtmlBom generate the font_data and use its default font
         del ibom_json["pcbdata"]["font_data"]
 
-    date = datetime.strptime(pnp_file_info.date, "%d/%m/%y")
-    ibom_json["pcbdata"]["metadata"]["date"] = date.strftime("%d.%m.%Y")
+    ibom_json["pcbdata"]["metadata"]["date"] = pnp_file_info.date
 
     if config["AddVariantToTitle"]:
         ibom_json["pcbdata"]["metadata"]["title"] += f" ({pnp_file_info.variant})"
