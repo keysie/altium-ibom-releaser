@@ -98,7 +98,7 @@ def extract_variant_components(paths: Paths) -> tuple[dict[str, dict[str, str]],
 
 
 def extract_variant_components_csv(pnp_file_contents: str) -> tuple[dict[str, dict[str, str]], FileInfo]:
-    lines = pnp_file_contents.strip().splitlines()
+    lines = pnp_file_contents.strip().replace('"', '').splitlines()
     file_info = parse_header(lines, txt=False)
     reader = csv.DictReader(lines[file_info.data_offset :])
     file_info.fields = {fieldname: None for fieldname in (reader.fieldnames or [])}
